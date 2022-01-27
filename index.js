@@ -4,14 +4,15 @@ import dotenv from "dotenv"
 
 dotenv.config(); //getting all env keys // first line after import (import ku aduthu ithai than eluthanum)
 
-console.log(process.env)
+// console.log(process.env)
 
 // const express = require("express");
 // const {MongoClient} = require("mongodb");
 
 const app = express();
 
-const PORT = 9000;
+// const PORT = 9000;
+const PORT = process.env.PORT;
 
 const movies = [
     {
