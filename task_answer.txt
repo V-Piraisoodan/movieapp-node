@@ -1,0 +1,28 @@
+// task answer 1
+
+app.get("/movies",(request,response)=>{
+    console.log(request.query);
+    const {language,rating} = request.query;
+    let moviesdata = movies;
+  
+
+    if(language){
+      moviesdata = (moviesdata.filter((mv)=>mv.language === language));
+   }
+
+    if(rating){
+      moviesdata = (moviesdata.filter((mv)=>mv.rating ==rating));
+    }
+  
+    // else if(rating && language){
+    //   moviesdata = (moviesdata.filter((mv)=>mv.language === language,mv.rating === +rating));
+    // }
+     
+    
+      response.send(moviesdata);
+    
+    // response.send(movies.filter((mv)=>mv.language === language));
+});
+
+
+// task answer2 - easy method (refer note's)
