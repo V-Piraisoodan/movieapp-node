@@ -1,7 +1,8 @@
 import express from 'express'; // "type" : "module"
 import { MongoClient } from "mongodb"; // "type" : "module"
 import dotenv from "dotenv"
-dotenv.config(); //getting all env keys
+
+dotenv.config(); //getting all env keys // first line after import (import ku aduthu ithai than eluthanum)
 
 console.log(process.env)
 
