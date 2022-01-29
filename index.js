@@ -159,7 +159,7 @@ app.get("/movies",async(request,response)=>{
 app.post('/movies',express.json(),async (request,response)=>{
   const data = request.body;
   console.log('incoming',data);
-  const result = await client.db('mern')
+  const result = await client.db('Movie_list')
   .collection('movies')
   .insertMany(data);
 
