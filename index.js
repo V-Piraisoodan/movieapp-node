@@ -118,7 +118,7 @@ const client = await createConnection(); //allowed or working with latest import
 // const PORT = 9000;
 
 app.get("/",(request,response)=>{
-    response.send("Hello,World🥰😍😘🤩");
+    response.send("Hello,World🥰😍😘🤩✨🎉🍫🥤");
 });
 
 // app.get("/movies/:id",async(request,response)=>{
