@@ -121,20 +121,20 @@ app.get("/",(request,response)=>{
     response.send("Hello,World🥰😍😘🤩✨🎉🍫🥤");
 });
 
-// app.get("/movies/:id",async(request,response)=>{
-//     const {id} = request.params;
-//     console.log(id);
-//     const movie = await client
-//            .db("movies")
-//            .collection("movies")
-//            .findOne({id: id });
-//     console.log(movie);
+app.get("/movies/:id",async(request,response)=>{
+    const {id} = request.params;
+    console.log(id);
+    const movie = await client
+           .db("movies")
+           .collection("movies")
+           .findOne({id: id });
+    console.log(movie);
 
-//     movie 
-//       ?response.send(movie)
-//       :response.status(404).send({msg:"Movie not found"})
+    movie 
+      ?response.send(movie)
+      :response.status(404).send({msg:"Movie not found"})
 
-// });
+});
 
 // mongodb all in one simple solution   ********   important answer
 
