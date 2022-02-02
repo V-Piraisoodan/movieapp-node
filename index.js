@@ -1,6 +1,9 @@
 import express from 'express'; // "type" : "module"
 import { MongoClient } from "mongodb"; // "type" : "module"
 import dotenv from "dotenv"
+import { movieRouter } from './Routes/movies.js';
+
+
 
 dotenv.config(); //getting all env keys // first line after import (import ku aduthu ithai than eluthanum)
 
@@ -10,6 +13,7 @@ dotenv.config(); //getting all env keys // first line after import (import ku ad
 // const {MongoClient} = require("mongodb");
 
 const app = express();
+app.use(express.json());
 
 // const PORT = 9000;
 const PORT = process.env.PORT;
@@ -113,7 +117,7 @@ async function createConnection(){
   return client;
 }
 
-const client = await createConnection(); //allowed or working with latest import only ("type":"module")-idhil mattume await function work agum.
+export const client = await createConnection(); //allowed or working with latest import only ("type":"module")-idhil mattume await function work agum.
 
 // const PORT = 9000;
 
@@ -121,51 +125,12 @@ app.get("/",(request,response)=>{
     response.send("Hello,World🥰😍😘🤩✨🎉🍫🥤");
 });
 
-app.get("/movies/:id",async(request,response)=>{
-    const {id} = request.params;
-    console.log(id);
-    const movie = await client
-           .db("movies")
-           .collection("movies")
-           .findOne({id: id });
-    console.log(movie);
-
-    movie 
-      ?response.send(movie)
-      :response.status(404).send({msg:"Movie not found"})
-
-});
-
-// mongodb all in one simple solution   ********   important answer
-
-app.get("/movies",async(request,response)=>{
-
- const filter = request.query;
- if(filter.rating){
-   filter.rating = +filter.rating;
-   console.log(filter.rating);
- }
-
- const movies = await client
-        .db("Movie_list")
-        .collection("movies")
-        .find(filter) // cursor -> pagination -> 20documents per page
-        .toArray(); //cursor to array conversion
-
-    response.send(movies);
-
-});
-
-app.post('/movies',express.json(),async (request,response)=>{
-  const data = request.body;
-  console.log('incoming',data);
-  const result = await client.db('Movie_list')
-  .collection('movies')
-  .insertMany(data);
-
-  response.send(result);
-})
 
 
+app.use("/movies", movieRouter);
 
 app.listen(PORT,()=>console.log("The server is started",PORT));
+
+
+
+
