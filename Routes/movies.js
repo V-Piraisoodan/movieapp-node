@@ -6,7 +6,7 @@ const router = express.Router();
 // mongodb all in one simple solution   ********   important answer
 
 router.route("/")
-  .get(auth,async(request,response)=>{
+  .get(async(request,response)=>{
   const filter = request.query;
   if(filter.rating){
   filter.rating = +filter.rating;
