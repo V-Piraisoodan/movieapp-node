@@ -2,6 +2,8 @@ import express from 'express'; // "type" : "module"
 import { MongoClient } from "mongodb"; // "type" : "module"
 import dotenv from "dotenv"
 import { movieRouter } from './Routes/movies.js';
+import { usersRouter } from './Routes/users.js';
+import bcrypt from "bcrypt";
 
 
 
@@ -128,9 +130,16 @@ app.get("/",(request,response)=>{
 
 
 app.use("/movies", movieRouter);
+app.use("/users", usersRouter);
+
 
 app.listen(PORT,()=>console.log("The server is started",PORT));
 
-
-
-
+// async function genpassword(password){
+//   const salt = await bcrypt.genSalt(10);
+//   console.log("salt :",salt);
+//   const hashedpassword = await bcrypt.hash(password,salt);
+//   console.log(hashedpassword);
+//   return hashedpassword
+// }
+// genpassword("password@12345")
