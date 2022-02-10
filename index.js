@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb"; // "type" : "module"
 import dotenv from "dotenv"
 import { movieRouter } from './Routes/movies.js';
 import { usersRouter } from './Routes/users.js';
+import cors from 'cors';
 import bcrypt from "bcrypt";
 
 
@@ -16,6 +17,7 @@ dotenv.config(); //getting all env keys // first line after import (import ku ad
 
 const app = express();
 app.use(express.json());
+app.use(cors());//cors
 
 // const PORT = 9000;
 const PORT = process.env.PORT;
